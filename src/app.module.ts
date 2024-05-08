@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -12,11 +13,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 5432,
       username: 'postgres',
       password: 'toor',
-      database: 'postgres',
+      database: 'sensedia_dashboard',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
     UsersModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
