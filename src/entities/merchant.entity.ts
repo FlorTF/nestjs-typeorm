@@ -1,16 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { Role } from './role.entity';
 
-@Entity({name: 'users'})
-export class User {
+@Entity({name: 'merchants'})
+export class Merchant {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({unique:true})
-  username: string;
-
   @Column()
-  password: string;
+  name: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created: Date;
@@ -20,9 +18,6 @@ export class User {
 
   @Column({ type: 'simple-array', default: ['active'] })
   status: string[];
-
-//   idRoles;
-//   idMerchant;
 
   constructor() {
     if (!this.id) {
